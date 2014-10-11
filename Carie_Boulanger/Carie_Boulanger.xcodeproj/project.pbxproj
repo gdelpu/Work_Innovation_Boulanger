@@ -13,6 +13,11 @@
 		2BBE880C19E918F8003DCA6C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BBE880B19E918F8003DCA6C /* Images.xcassets */; };
 		2BBE880F19E918F8003DCA6C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BBE880D19E918F8003DCA6C /* LaunchScreen.xib */; };
 		2BBE881B19E918F8003DCA6C /* Carie_BoulangerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBE881A19E918F8003DCA6C /* Carie_BoulangerTests.swift */; };
+		2BBE882919E91CF4003DCA6C /* SensorOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBE882819E91CF4003DCA6C /* SensorOverview.swift */; };
+		2BBE882D19E96539003DCA6C /* SensorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BBE882C19E96539003DCA6C /* SensorView.xib */; };
+		2BBE883619E97A0F003DCA6C /* JBBarChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BBE883119E97A0F003DCA6C /* JBBarChartView.m */; };
+		2BBE883719E97A0F003DCA6C /* JBChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BBE883319E97A0F003DCA6C /* JBChartView.m */; };
+		2BBE883819E97A0F003DCA6C /* JBLineChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BBE883519E97A0F003DCA6C /* JBLineChartView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +41,15 @@
 		2BBE881419E918F8003DCA6C /* Carie_BoulangerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Carie_BoulangerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BBE881919E918F8003DCA6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2BBE881A19E918F8003DCA6C /* Carie_BoulangerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Carie_BoulangerTests.swift; sourceTree = "<group>"; };
+		2BBE882819E91CF4003DCA6C /* SensorOverview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorOverview.swift; sourceTree = "<group>"; };
+		2BBE882C19E96539003DCA6C /* SensorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SensorView.xib; sourceTree = "<group>"; };
+		2BBE883019E97A0F003DCA6C /* JBBarChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBBarChartView.h; sourceTree = "<group>"; };
+		2BBE883119E97A0F003DCA6C /* JBBarChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBBarChartView.m; sourceTree = "<group>"; };
+		2BBE883219E97A0F003DCA6C /* JBChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBChartView.h; sourceTree = "<group>"; };
+		2BBE883319E97A0F003DCA6C /* JBChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBChartView.m; sourceTree = "<group>"; };
+		2BBE883419E97A0F003DCA6C /* JBLineChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBLineChartView.h; sourceTree = "<group>"; };
+		2BBE883519E97A0F003DCA6C /* JBLineChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBLineChartView.m; sourceTree = "<group>"; };
+		2BBE883A19E981C4003DCA6C /* Carie_Boulanger-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Carie_Boulanger-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +91,9 @@
 		2BBE880119E918F8003DCA6C /* Carie_Boulanger */ = {
 			isa = PBXGroup;
 			children = (
+				2BBE883A19E981C4003DCA6C /* Carie_Boulanger-Bridging-Header.h */,
+				2BBE882E19E979E4003DCA6C /* JBChartView */,
+				2BBE882519E91B43003DCA6C /* User Interface */,
 				2BBE880419E918F8003DCA6C /* AppDelegate.swift */,
 				2BBE880619E918F8003DCA6C /* ViewController.swift */,
 				2BBE880819E918F8003DCA6C /* Main.storyboard */,
@@ -110,6 +127,29 @@
 				2BBE881919E918F8003DCA6C /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2BBE882519E91B43003DCA6C /* User Interface */ = {
+			isa = PBXGroup;
+			children = (
+				2BBE882819E91CF4003DCA6C /* SensorOverview.swift */,
+				2BBE882C19E96539003DCA6C /* SensorView.xib */,
+			);
+			name = "User Interface";
+			path = "Carie_Boulanger/User Interface";
+			sourceTree = SOURCE_ROOT;
+		};
+		2BBE882E19E979E4003DCA6C /* JBChartView */ = {
+			isa = PBXGroup;
+			children = (
+				2BBE883019E97A0F003DCA6C /* JBBarChartView.h */,
+				2BBE883119E97A0F003DCA6C /* JBBarChartView.m */,
+				2BBE883219E97A0F003DCA6C /* JBChartView.h */,
+				2BBE883319E97A0F003DCA6C /* JBChartView.m */,
+				2BBE883419E97A0F003DCA6C /* JBLineChartView.h */,
+				2BBE883519E97A0F003DCA6C /* JBLineChartView.m */,
+			);
+			name = JBChartView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -192,6 +232,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BBE882D19E96539003DCA6C /* SensorView.xib in Resources */,
 				2BBE880A19E918F8003DCA6C /* Main.storyboard in Resources */,
 				2BBE880F19E918F8003DCA6C /* LaunchScreen.xib in Resources */,
 				2BBE880C19E918F8003DCA6C /* Images.xcassets in Resources */,
@@ -212,7 +253,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BBE882919E91CF4003DCA6C /* SensorOverview.swift in Sources */,
+				2BBE883819E97A0F003DCA6C /* JBLineChartView.m in Sources */,
+				2BBE883619E97A0F003DCA6C /* JBBarChartView.m in Sources */,
 				2BBE880719E918F8003DCA6C /* ViewController.swift in Sources */,
+				2BBE883719E97A0F003DCA6C /* JBChartView.m in Sources */,
 				2BBE880519E918F8003DCA6C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -293,6 +338,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -328,6 +374,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -336,9 +383,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Carie_Boulanger/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Carie_Boulanger/Carie_Boulanger-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -346,9 +397,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Carie_Boulanger/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Carie_Boulanger/Carie_Boulanger-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -405,6 +459,7 @@
 				2BBE882019E918F8003DCA6C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2BBE882119E918F8003DCA6C /* Build configuration list for PBXNativeTarget "Carie_BoulangerTests" */ = {
 			isa = XCConfigurationList;
@@ -413,6 +468,7 @@
 				2BBE882319E918F8003DCA6C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

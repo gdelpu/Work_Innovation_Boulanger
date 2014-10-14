@@ -12,8 +12,9 @@ import QuartzCore
 @IBDesignable
 class SensorOverview: UIView, JBBarChartViewDataSource, JBBarChartViewDelegate  {
     
-    var values:[CGFloat] = [10,20,30,10,50,40,30,20,10];
+    let BorderWidth = CGFloat(2);
     
+
     @IBOutlet weak var sensorLogo: UIImageView!;
     
     @IBOutlet weak var colorRing: UIView!;
@@ -32,11 +33,18 @@ class SensorOverview: UIView, JBBarChartViewDataSource, JBBarChartViewDelegate  
         }
     }
     
+    var values:[CGFloat] = [10,20,30,10,50,40,30,20,10] {
+        didSet {
+            self.proxyView!.values = self.values;
+            self.drawChart();
+        }
+    }
     @IBInspectable  var avatarImage: UIImage = UIImage() {
         didSet {
             let size = self.avatarImage.size
             let rect = CGRectMake(0, 0, size.width, size.height)
             UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
+            
             var path = UIBezierPath(ovalInRect: rect)
             path.addClip()
             self.avatarImage.drawInRect(rect)
@@ -84,7 +92,7 @@ class SensorOverview: UIView, JBBarChartViewDataSource, JBBarChartViewDelegate  
         
         var borderLayer = view.borderView.layer;
         borderLayer.cornerRadius = 10;
-        borderLayer.borderWidth = 2;
+        borderLayer.borderWidth = BorderWidth;
         borderLayer.borderColor = UIColor.darkGrayColor().CGColor;
         
         var colorRingLayer = view.colorRing.layer;
@@ -93,12 +101,12 @@ class SensorOverview: UIView, JBBarChartViewDataSource, JBBarChartViewDelegate  
         var placeHolderLayer = view.placeHolderView.layer;
         placeHolderLayer.cornerRadius = view.placeHolderView.frame.width/2;
         placeHolderLayer.borderColor = UIColor.darkGrayColor().CGColor;
-        placeHolderLayer.borderWidth = 2;
+        placeHolderLayer.borderWidth = BorderWidth;
         
         var imageLayer = view.sensorLogo.layer;
         
         imageLayer.cornerRadius = view.sensorLogo.frame.width/2;
-        imageLayer.borderWidth = 2;
+        imageLayer.borderWidth = BorderWidth;
         imageLayer.borderColor = UIColor.darkGrayColor().CGColor;
         
         let rect : CGRect = view.colorRing.frame;
@@ -122,6 +130,7 @@ class SensorOverview: UIView, JBBarChartViewDataSource, JBBarChartViewDelegate  
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
         
         let newState:JBChartViewState = self.barCharView.state == JBChartViewState.Expanded ? JBChartViewState.Collapsed : JBChartViewState.Expanded;
+        
         self.barCharView.setState(newState, animated: true)
     }
     

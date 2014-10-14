@@ -5,10 +5,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Main View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="Carie_Boulanger" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="MainViewController" customModule="Carie_Boulanger" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -33,17 +33,32 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="title" value="Humidité"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Buh-zx-W9T">
+                                <rect key="frame" x="538" y="550" width="53" height="30"/>
+                                <state key="normal" title="Refresh">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="refreshData" destination="vXZ-lx-hvc" eventType="touchDown" id="1WH-do-Ehh"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="Buh-zx-W9T" secondAttribute="trailing" constant="-7" id="99s-Kx-Tqk"/>
                             <constraint firstItem="Hqb-QQ-gZu" firstAttribute="top" secondItem="sfF-0c-EDE" secondAttribute="bottom" constant="8" symbolic="YES" id="BCS-b0-qm4"/>
                             <constraint firstItem="Hqb-QQ-gZu" firstAttribute="trailing" secondItem="sfF-0c-EDE" secondAttribute="trailing" id="QR6-XC-YE5"/>
                             <constraint firstItem="sfF-0c-EDE" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="ZLf-rS-mSi"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="Buh-zx-W9T" secondAttribute="bottom" constant="20" id="c6a-MW-25O"/>
                             <constraint firstAttribute="trailingMargin" secondItem="sfF-0c-EDE" secondAttribute="trailing" id="fOr-WN-P03"/>
                             <constraint firstItem="Hqb-QQ-gZu" firstAttribute="leading" secondItem="sfF-0c-EDE" secondAttribute="leading" id="igo-vV-Ygr"/>
                             <constraint firstItem="sfF-0c-EDE" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="xy5-zj-nax"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="TempSensorView" destination="Hqb-QQ-gZu" id="pqD-8d-CEe"/>
+                        <outlet property="refreshButton" destination="Buh-zx-W9T" id="4dr-VY-vAd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>

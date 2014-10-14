@@ -18,6 +18,13 @@
 		2BBE883619E97A0F003DCA6C /* JBBarChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BBE883119E97A0F003DCA6C /* JBBarChartView.m */; };
 		2BBE883719E97A0F003DCA6C /* JBChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BBE883319E97A0F003DCA6C /* JBChartView.m */; };
 		2BBE883819E97A0F003DCA6C /* JBLineChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BBE883519E97A0F003DCA6C /* JBLineChartView.m */; };
+		2BE56EEF19EBED5900450999 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE56EED19EBED5900450999 /* JSON.swift */; };
+		2BE56EF019EBED5900450999 /* JsonService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE56EEE19EBED5900450999 /* JsonService.swift */; };
+		2BE56EF219EBED6400450999 /* Operator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE56EF119EBED6400450999 /* Operator.swift */; };
+		2BE56EF419EBED7700450999 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE56EF319EBED7700450999 /* SwiftyJSON.swift */; };
+		2BE56EF819EBED9D00450999 /* Messages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE56EF619EBED9D00450999 /* Messages.swift */; };
+		2BE56EF919EBED9D00450999 /* ValueWithRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE56EF719EBED9D00450999 /* ValueWithRange.swift */; };
+		2BE56EFB19ED4E4900450999 /* DateTimeFormat_Singleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE56EFA19ED4E4900450999 /* DateTimeFormat_Singleton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +57,13 @@
 		2BBE883419E97A0F003DCA6C /* JBLineChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBLineChartView.h; sourceTree = "<group>"; };
 		2BBE883519E97A0F003DCA6C /* JBLineChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBLineChartView.m; sourceTree = "<group>"; };
 		2BBE883A19E981C4003DCA6C /* Carie_Boulanger-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Carie_Boulanger-Bridging-Header.h"; sourceTree = "<group>"; };
+		2BE56EED19EBED5900450999 /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
+		2BE56EEE19EBED5900450999 /* JsonService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonService.swift; sourceTree = "<group>"; };
+		2BE56EF119EBED6400450999 /* Operator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operator.swift; sourceTree = "<group>"; };
+		2BE56EF319EBED7700450999 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
+		2BE56EF619EBED9D00450999 /* Messages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Messages.swift; sourceTree = "<group>"; };
+		2BE56EF719EBED9D00450999 /* ValueWithRange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValueWithRange.swift; sourceTree = "<group>"; };
+		2BE56EFA19ED4E4900450999 /* DateTimeFormat_Singleton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTimeFormat_Singleton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +105,8 @@
 		2BBE880119E918F8003DCA6C /* Carie_Boulanger */ = {
 			isa = PBXGroup;
 			children = (
+				2BE56EF519EBED8B00450999 /* Models */,
+				2BE56EEC19EBED3200450999 /* Helpers */,
 				2BBE883A19E981C4003DCA6C /* Carie_Boulanger-Bridging-Header.h */,
 				2BBE882E19E979E4003DCA6C /* JBChartView */,
 				2BBE882519E91B43003DCA6C /* User Interface */,
@@ -150,6 +166,27 @@
 				2BBE883519E97A0F003DCA6C /* JBLineChartView.m */,
 			);
 			name = JBChartView;
+			sourceTree = "<group>";
+		};
+		2BE56EEC19EBED3200450999 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				2BE56EF319EBED7700450999 /* SwiftyJSON.swift */,
+				2BE56EF119EBED6400450999 /* Operator.swift */,
+				2BE56EED19EBED5900450999 /* JSON.swift */,
+				2BE56EEE19EBED5900450999 /* JsonService.swift */,
+				2BE56EFA19ED4E4900450999 /* DateTimeFormat_Singleton.swift */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
+		2BE56EF519EBED8B00450999 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2BE56EF619EBED9D00450999 /* Messages.swift */,
+				2BE56EF719EBED9D00450999 /* ValueWithRange.swift */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -254,11 +291,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BBE882919E91CF4003DCA6C /* SensorOverview.swift in Sources */,
+				2BE56EF919EBED9D00450999 /* ValueWithRange.swift in Sources */,
+				2BE56EEF19EBED5900450999 /* JSON.swift in Sources */,
 				2BBE883819E97A0F003DCA6C /* JBLineChartView.m in Sources */,
+				2BE56EF419EBED7700450999 /* SwiftyJSON.swift in Sources */,
 				2BBE883619E97A0F003DCA6C /* JBBarChartView.m in Sources */,
 				2BBE880719E918F8003DCA6C /* ViewController.swift in Sources */,
+				2BE56EF819EBED9D00450999 /* Messages.swift in Sources */,
+				2BE56EFB19ED4E4900450999 /* DateTimeFormat_Singleton.swift in Sources */,
 				2BBE883719E97A0F003DCA6C /* JBChartView.m in Sources */,
 				2BBE880519E918F8003DCA6C /* AppDelegate.swift in Sources */,
+				2BE56EF219EBED6400450999 /* Operator.swift in Sources */,
+				2BE56EF019EBED5900450999 /* JsonService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,7 +378,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -371,7 +415,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "";

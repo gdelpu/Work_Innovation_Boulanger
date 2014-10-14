@@ -12,7 +12,7 @@ import QuartzCore
 @IBDesignable
 class SensorOverview: UIView, JBBarChartViewDataSource, JBBarChartViewDelegate  {
     
-    let BorderWidth = CGFloat(2);
+    let BorderWidth = CGFloat(1);
     
 
     @IBOutlet weak var sensorLogo: UIImageView!;
@@ -33,9 +33,11 @@ class SensorOverview: UIView, JBBarChartViewDataSource, JBBarChartViewDelegate  
         }
     }
     
-    var values:[CGFloat] = [10,20,30,10,50,40,30,20,10] {
+    var values:[CGFloat] = [] {
         didSet {
+            
             self.proxyView!.values = self.values;
+            self.valueLabel.text = self.values.last?.description;
             self.drawChart();
         }
     }
@@ -57,12 +59,14 @@ class SensorOverview: UIView, JBBarChartViewDataSource, JBBarChartViewDelegate  
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        initPlot();
+
         var view = self.loadNib()
         view.frame = self.bounds
         view.autoresizingMask = .FlexibleWidth | .FlexibleHeight
         self.proxyView = view
         self.addSubview(self.proxyView!)
+        
+        initPlot();
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -109,18 +113,18 @@ class SensorOverview: UIView, JBBarChartViewDataSource, JBBarChartViewDelegate  
         imageLayer.borderWidth = BorderWidth;
         imageLayer.borderColor = UIColor.darkGrayColor().CGColor;
         
-        let rect : CGRect = view.colorRing.frame;
-        var vista : UIView = UIView(frame: rect);
-        let gradient : CAGradientLayer = CAGradientLayer()
-
-        gradient.frame = vista.bounds
-        
-        let cor1 = UIColor.blackColor().CGColor
-        let cor2 = UIColor.whiteColor().CGColor
-        let arrayColors = [cor1, cor2]
-        
-        gradient.colors = arrayColors
-        view.colorRing.layer.insertSublayer(gradient, atIndex: 0)
+//        let rect : CGRect = view.colorRing.frame;
+//        var vista : UIView = UIView(frame: rect);
+//        let gradient : CAGradientLayer = CAGradientLayer()
+//
+//        gradient.frame = vista.bounds
+//        
+//        let cor1 = UIColor.blackColor().CGColor
+//        let cor2 = UIColor.whiteColor().CGColor
+//        let arrayColors = [cor1, cor2]
+//        
+//        gradient.colors = arrayColors
+//        view.colorRing.layer.insertSublayer(gradient, atIndex: 0)
         
         view.userInteractionEnabled = true;
         

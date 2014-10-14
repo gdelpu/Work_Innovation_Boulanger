@@ -9,15 +9,19 @@
 import UIKit
 
 class MainViewController: UIViewController {
-    var values:Array<CGFloat> = [];
+    var values:Array<Message> = [];
     
     @IBOutlet var TempSensorView: SensorOverview!;
+    @IBOutlet var HumiditySensorView: SensorOverview!;
     @IBOutlet var refreshButton:  UIButton!;
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-
+        
+        self.TempSensorView.title = "Temperature2";
+        self.HumiditySensorView.title = "Humidity2";
+        
         self.refreshData();
     }
     
@@ -37,22 +41,34 @@ class MainViewController: UIViewController {
     }
     
     // MARK: - Http request
-    func UpdateValues (messages:[CGFloat]) {
+    func UpdateValues (messages:[Message]) {
         
-        TempSensorView.values = messages;
+        for item:Message in messages {
+            self.values.append(item);
+        }
+        
+        let upperBound:Int = self.values.count - 1;
+        let lowerBound:Int = upperBound - 15;
+        
+        
+        //var test = self.values[lowerBound...upperBound]
+        self.TempSensorView.values = Array(self.values[lowerBound...upperBound]).map { (item:Message) -> CGFloat in return CGFloat(item.Temperature.value) };
+        
+        self.HumiditySensorView.values = Array(self.values[lowerBound...upperBound]).map { (item:Message) -> CGFloat in return CGFloat(item.Humidite.value) };
+        
     }
     
-    func ParseJsonMessages (json: [JSON]) -> [CGFloat] {
+    func ParseJsonMessages (json: [JSON]) -> [Message] {
         
-        var result:[CGFloat] = [];
+        var result:[Message] = [];
         
         //        let dateFormatter: NSDateFormatter = NSDateFormatter();
         //        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS";
         
         for item:JSON in json {
-            result.append(CGFloat(item["Temperature"].integerValue!));
+            result.append(Message(json: item));
             
-            var test:NSDate = DateTimeFormater.sharedInstance.dateFromString(item["Date"].stringValue!)!;
+            //var test:NSDate = DateTimeFormater.sharedInstance.dateFromString(item["Date"].stringValue!)!;
         }
         
         return result;

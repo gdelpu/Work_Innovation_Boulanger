@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B89F62119F9981C002BA151 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B89F62019F9981C002BA151 /* ContainerViewController.swift */; };
+		2B89F62319F99CE4002BA151 /* DevicesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B89F62219F99CE4002BA151 /* DevicesTableViewController.swift */; };
+		2B9C353619EFDDC500081E4A /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B9C353519EFDDC500081E4A /* CoreData.framework */; };
 		2BBE880519E918F8003DCA6C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBE880419E918F8003DCA6C /* AppDelegate.swift */; };
 		2BBE880719E918F8003DCA6C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBE880619E918F8003DCA6C /* ViewController.swift */; };
 		2BBE880A19E918F8003DCA6C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BBE880819E918F8003DCA6C /* Main.storyboard */; };
@@ -38,6 +41,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2B89F62019F9981C002BA151 /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
+		2B89F62219F99CE4002BA151 /* DevicesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevicesTableViewController.swift; sourceTree = "<group>"; };
+		2B9C353519EFDDC500081E4A /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		2BBE87FF19E918F8003DCA6C /* Carie_Boulanger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Carie_Boulanger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BBE880319E918F8003DCA6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2BBE880419E918F8003DCA6C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -71,6 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B9C353619EFDDC500081E4A /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,6 +94,7 @@
 		2BBE87F619E918F8003DCA6C = {
 			isa = PBXGroup;
 			children = (
+				2B9C353519EFDDC500081E4A /* CoreData.framework */,
 				2BBE880119E918F8003DCA6C /* Carie_Boulanger */,
 				2BBE881719E918F8003DCA6C /* Carie_BoulangerTests */,
 				2BBE880019E918F8003DCA6C /* Products */,
@@ -116,6 +124,8 @@
 				2BBE880B19E918F8003DCA6C /* Images.xcassets */,
 				2BBE880D19E918F8003DCA6C /* LaunchScreen.xib */,
 				2BBE880219E918F8003DCA6C /* Supporting Files */,
+				2B89F62019F9981C002BA151 /* ContainerViewController.swift */,
+				2B89F62219F99CE4002BA151 /* DevicesTableViewController.swift */,
 			);
 			path = Carie_Boulanger;
 			sourceTree = "<group>";
@@ -238,6 +248,7 @@
 				TargetAttributes = {
 					2BBE87FE19E918F8003DCA6C = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = W5VJU4UU6S;
 					};
 					2BBE881319E918F8003DCA6C = {
 						CreatedOnToolsVersion = 6.1;
@@ -292,6 +303,8 @@
 			files = (
 				2BBE882919E91CF4003DCA6C /* SensorOverview.swift in Sources */,
 				2BE56EF919EBED9D00450999 /* ValueWithRange.swift in Sources */,
+				2B89F62319F99CE4002BA151 /* DevicesTableViewController.swift in Sources */,
+				2B89F62119F9981C002BA151 /* ContainerViewController.swift in Sources */,
 				2BE56EEF19EBED5900450999 /* JSON.swift in Sources */,
 				2BBE883819E97A0F003DCA6C /* JBLineChartView.m in Sources */,
 				2BE56EF419EBED7700450999 /* SwiftyJSON.swift in Sources */,
@@ -428,12 +441,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Carie_Boulanger/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Carie_Boulanger/Carie_Boulanger-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -442,11 +459,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Carie_Boulanger/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Carie_Boulanger/Carie_Boulanger-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

@@ -10,11 +10,11 @@ import UIKit
 import QuartzCore
 
 @IBDesignable
-class SensorOverview: UIView, JBBarChartViewDataSource, JBBarChartViewDelegate  {
+class SensorOverview: UIView, JBLineChartViewDataSource, JBLineChartViewDelegate  {
     
-    let BorderWidth = CGFloat(1);
+    let BorderWidth = CGFloat(2);
     
-
+    
     @IBOutlet weak var sensorLogo: UIImageView!;
     
     @IBOutlet weak var colorRing: UIView!;
@@ -24,7 +24,9 @@ class SensorOverview: UIView, JBBarChartViewDataSource, JBBarChartViewDelegate  
     @IBOutlet weak var titleLabel: UILabel!;
     @IBOutlet weak var valueLabel: UILabel!;
     
-    @IBOutlet weak var barCharView: JBBarChartView!
+    @IBOutlet weak var ChartView: JBLineChartView!;
+    @IBOutlet weak var ChartBackground: UIView!;
+    
     private var proxyView: SensorOverview?
     
     @IBInspectable var title: String = "" {
@@ -33,14 +35,14 @@ class SensorOverview: UIView, JBBarChartViewDataSource, JBBarChartViewDelegate  
         }
     }
     
-    var values:[CGFloat] = [] {
+    var values:[CGFloat] = [5,5,5,5] {
         didSet {
-            
             self.proxyView!.values = self.values;
             self.valueLabel.text = self.values.last?.description;
             self.drawChart();
         }
     }
+    
     @IBInspectable  var avatarImage: UIImage = UIImage() {
         didSet {
             let size = self.avatarImage.size
@@ -59,7 +61,7 @@ class SensorOverview: UIView, JBBarChartViewDataSource, JBBarChartViewDelegate  
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-
+        
         var view = self.loadNib()
         view.frame = self.bounds
         view.autoresizingMask = .FlexibleWidth | .FlexibleHeight
@@ -80,6 +82,7 @@ class SensorOverview: UIView, JBBarChartViewDataSource, JBBarChartViewDelegate  
             let contraints = self.constraints()
             self.removeConstraints(contraints)
             view.addConstraints(contraints)
+            
             view.proxyView = view
             return view
         }
@@ -113,19 +116,6 @@ class SensorOverview: UIView, JBBarChartViewDataSource, JBBarChartViewDelegate  
         imageLayer.borderWidth = BorderWidth;
         imageLayer.borderColor = UIColor.darkGrayColor().CGColor;
         
-//        let rect : CGRect = view.colorRing.frame;
-//        var vista : UIView = UIView(frame: rect);
-//        let gradient : CAGradientLayer = CAGradientLayer()
-//
-//        gradient.frame = vista.bounds
-//        
-//        let cor1 = UIColor.blackColor().CGColor
-//        let cor2 = UIColor.whiteColor().CGColor
-//        let arrayColors = [cor1, cor2]
-//        
-//        gradient.colors = arrayColors
-//        view.colorRing.layer.insertSublayer(gradient, atIndex: 0)
-        
         view.userInteractionEnabled = true;
         
         return view
@@ -133,9 +123,6 @@ class SensorOverview: UIView, JBBarChartViewDataSource, JBBarChartViewDelegate  
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
         
-        let newState:JBChartViewState = self.barCharView.state == JBChartViewState.Expanded ? JBChartViewState.Collapsed : JBChartViewState.Expanded;
-        
-        self.barCharView.setState(newState, animated: true)
     }
     
     override func intrinsicContentSize() -> CGSize {
@@ -147,62 +134,70 @@ class SensorOverview: UIView, JBBarChartViewDataSource, JBBarChartViewDelegate  
     }
     
     func initPlot() {
-        self.barCharView.delegate = self;
-        self.barCharView.dataSource = self;
-        self.barCharView.showsVerticalSelection = false;
-        
-        let x = self.barCharView.frame.minX;
-        let XColorring = self.colorRing.frame.minX;
-        
-        let y = self.barCharView.frame.minY;
-        let width = XColorring - x;
-        let height = self.barCharView.frame.height;
-        //self.barCharView.frame = CGRectMake(x, y, width, height);
-        
-        self.barCharView.state = JBChartViewState.Collapsed;
+        self.ChartView.delegate = self;
+        self.ChartView.dataSource = self;
+        self.ChartView.showsVerticalSelection = false;
     }
     
     func drawChart() {
-        if self.barCharView.delegate == nil {
+        if self.ChartView.delegate == nil {
             initPlot();
         }
-        
-        self.barCharView.reloadData();
-        self.barCharView.setState(JBChartViewState.Expanded, animated: true);
+        self.ChartView.minimumValue = 0;
+        self.test();
+        self.ChartView.reloadData();
     }
     
     //MARK: - JBBarChartView Delegate
-    func barChartView(barChartView: JBBarChartView!, heightForBarViewAtIndex index: UInt) -> CGFloat {
-        return values[Int(index)];
+    
+    func numberOfLinesInLineChartView(lineChartView: JBLineChartView!) -> UInt {
+        return 1;
     }
     
-    func barChartView(barChartView: JBBarChartView!, colorForBarViewAtIndex index: UInt) -> UIColor! {
-        if index%2 == 0 {
-            return UIColor.redColor()
-        } else {
-            return UIColor.greenColor();
-        }
+    func lineChartView(lineChartView: JBLineChartView!, smoothLineAtLineIndex lineIndex: UInt) -> Bool {
+        return true;
+    }
+    
+    func lineChartView(lineChartView: JBLineChartView!, widthForLineAtLineIndex lineIndex: UInt) -> CGFloat {
+        return 1;
+    }
+    
+    func lineChartView(lineChartView: JBLineChartView!, colorForLineAtLineIndex lineIndex: UInt) -> UIColor! {
+        return UIColor.blueColor();
+    }
+    
+    func lineChartView(lineChartView: JBLineChartView!, lineStyleForLineAtLineIndex lineIndex: UInt) -> JBLineChartViewLineStyle {
+        return JBLineChartViewLineStyle.Solid
+    }
+    
+    func lineChartView(lineChartView: JBLineChartView!, fillColorForLineAtLineIndex lineIndex: UInt) -> UIColor! {
+        return UIColor(red: 119, green: 160, blue: 229, alpha: 0.5);
     }
     
     //MARK: - JBBarChartView DataSource
-    func numberOfBarsInBarChartView(barChartView: JBBarChartView!) -> UInt {
-        return UInt(values.count);
+    func lineChartView(lineChartView: JBLineChartView!, numberOfVerticalValuesAtLineIndex lineIndex: UInt) -> UInt {
+        return UInt( values.count );
+    }
+    
+    func lineChartView(lineChartView: JBLineChartView!, verticalValueForHorizontalIndex horizontalIndex: UInt, atLineIndex lineIndex: UInt) -> CGFloat {
+        return values[Int(horizontalIndex)];
     }
     
     func test () {
-        let rect : CGRect = self.colorRing.frame
+        let rect : CGRect = self.ChartBackground.frame
         var vista : UIView = UIView(frame: rect);
         
         let gradient : CAGradientLayer = CAGradientLayer()
         gradient.frame = vista.bounds
         
-        let cor1 = UIColor.blackColor().CGColor
+        let cor1 = UIColor.redColor().CGColor
         let cor2 = UIColor.whiteColor().CGColor
-        let arrayColors = [cor1, cor2]
+        let arrayColors = [cor2, cor2, cor1]
         
         gradient.colors = arrayColors
+        gradient.locations = [0.4, 0.6];
         
-        self.colorRing.layer.insertSublayer(gradient, atIndex: 0)
+        self.ChartBackground.layer.insertSublayer(gradient, atIndex: 0)
     }
     
     func radialGradientImage(size:CGSize, start:CGFloat, end:CGFloat, center:CGPoint, radius:CGFloat) -> UIImage
@@ -227,5 +222,10 @@ class SensorOverview: UIView, JBBarChartViewDataSource, JBBarChartViewDelegate  
         return image;
     }
     
-    
+    func makeGradient() {
+        var gradient:CAGradientLayer = CAGradientLayer();
+        gradient.frame = self.ChartBackground.frame;
+        gradient.colors = [UIColor.blueColor(), UIColor.clearColor()];
+        self.ChartBackground.layer.insertSublayer(gradient, atIndex: 0);
+    }
 }

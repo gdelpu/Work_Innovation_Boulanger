@@ -8,9 +8,16 @@
 
 import UIKit
 
+@objc
+protocol DevicesTableViewControllerDelegate {
+    optional func didSelectDevice(deviceName:String)
+}
+
 class DevicesTableViewController: UITableViewController {
     
     var listOfDevices: [String] = ["86D3","86C4","300D"];
+    
+    var delegate:DevicesTableViewControllerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,6 +63,14 @@ class DevicesTableViewController: UITableViewController {
         return cell
     }
 
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    
+        if let D = self.delegate {
+            var device :String = listOfDevices[indexPath.row];
+
+            D.didSelectDevice!(device);
+        }
+    }
     
 
     /*

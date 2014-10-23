@@ -80,10 +80,13 @@ class ContainerViewController: UIViewController, MainViewControllerDelegate, UIG
     
     func addLeftPanelViewController() {
         if (leftViewController == nil) {
+
             leftViewController = UIStoryboard.leftViewController()
             //leftViewController!.animals = Animal.allCats()
             
             addChildSidePanelController(leftViewController!)
+            
+            leftViewController.delegate = self.mainViewController;
         }
     }
     

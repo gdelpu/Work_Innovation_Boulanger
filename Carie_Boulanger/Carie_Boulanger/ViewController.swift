@@ -14,11 +14,20 @@ protocol MainViewControllerDelegate {
     optional func collapseSidePanels()
 }
 
-class MainViewController: UIViewController, JBLineChartViewDelegate, JBLineChartViewDataSource {
+class MainViewController: UIViewController, JBLineChartViewDelegate, JBLineChartViewDataSource, DevicesTableViewControllerDelegate {
     var delegate: MainViewControllerDelegate?
     
     var values:Array<Message> = [];
     var ValuesForChart:Array<CGFloat> = [];
+    
+    var deviceName:String = "" {
+        didSet {
+            if let d = delegate {
+                d.collapseSidePanels!();
+                refreshData();
+            }
+        }
+    };
     
     @IBOutlet var TempSensorView: SensorOverview!;
     @IBOutlet var HumiditySensorView: SensorOverview!;
@@ -37,7 +46,11 @@ class MainViewController: UIViewController, JBLineChartViewDelegate, JBLineChart
         self.ChartView.dataSource = self;
         self.ChartView.delegate = self;
         
-        self.refreshData();
+        if deviceName == "" {
+            if let D = delegate {
+                D.toggleLeftPanel!();
+            }
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -54,9 +67,10 @@ class MainViewController: UIViewController, JBLineChartViewDelegate, JBLineChart
         formatter.stringFromDate(date);
         
         //Format URL
-            //let url = NSURL(string: "http://prevention.azurewebsites.net/api/messages/300D/" + formatter.stringFromDate(date));
-        let url = NSURL(string: "http://prevention.azurewebsites.net/api/messages/86D3/" + "2014-10-01/2014-10-17");
-
+        //let url = NSURL(string: "http://prevention.azurewebsites.net/api/messages/" + deviceName + "/" + formatter.stringFromDate(date));
+        
+        let url = NSURL(string: "http://prevention.azurewebsites.net/api/messages/" + deviceName + "/2014-10-20");
+        
         //Request data
         JSONService
             .GET(url!)
@@ -145,6 +159,11 @@ class MainViewController: UIViewController, JBLineChartViewDelegate, JBLineChart
     
     func lineChartView(lineChartView: JBLineChartView!, widthForLineAtLineIndex lineIndex: UInt) -> CGFloat {
         return 1;
+    }
+    
+    //MARK: - DevicesTableViewControllerDelegate
+    func didSelectDevice(deviceName: String) {
+        self.deviceName = deviceName;
     }
 }
 

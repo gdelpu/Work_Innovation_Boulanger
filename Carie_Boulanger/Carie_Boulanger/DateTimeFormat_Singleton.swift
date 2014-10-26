@@ -8,6 +8,9 @@
 
 import Foundation
 
+//NSDateFormatter threadSafe static class using singleton pattern
+// => Avoid instancing a dateformatter each time to speedup the application
+// overhall performance.
 
 class DateTimeFormater {
     class var sharedInstance :DateTimeFormater {

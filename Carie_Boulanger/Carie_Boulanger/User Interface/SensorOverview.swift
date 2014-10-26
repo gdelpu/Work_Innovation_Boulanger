@@ -9,11 +9,16 @@
 import UIKit
 import QuartzCore
 
+@objc
+protocol SensorOverviewDelegate {
+    optional func DidTouchLogo(SensorTitle: String)
+}
+
 @IBDesignable
 class SensorOverview: UIView, JBLineChartViewDataSource, JBLineChartViewDelegate  {
     
     let BorderWidth = CGFloat(2);
-    
+    let lineColor = UIColor.blueColor();
     
     @IBOutlet weak var sensorLogo: UIImageView!;
     
@@ -27,6 +32,10 @@ class SensorOverview: UIView, JBLineChartViewDataSource, JBLineChartViewDelegate
     @IBOutlet weak var ChartView: JBLineChartView!;
     @IBOutlet weak var ChartBackground: UIView!;
     
+    @IBOutlet weak var buttonSelect: UIButton!;
+    
+    var delegate:SensorOverviewDelegate?;
+    
     private var proxyView: SensorOverview?
     
     @IBInspectable var title: String = "" {
@@ -35,7 +44,7 @@ class SensorOverview: UIView, JBLineChartViewDataSource, JBLineChartViewDelegate
         }
     }
     
-    var values:[CGFloat] = [5,5,5,5] {
+    var values:[CGFloat] = [] {
         didSet {
             self.proxyView!.values = self.values;
             self.valueLabel.text = self.values.last?.description;
@@ -60,13 +69,13 @@ class SensorOverview: UIView, JBLineChartViewDataSource, JBLineChartViewDelegate
     }
     
     override init(frame: CGRect) {
-        super.init(frame: frame)
         
-        var view = self.loadNib()
-        view.frame = self.bounds
-        view.autoresizingMask = .FlexibleWidth | .FlexibleHeight
-        self.proxyView = view
-        self.addSubview(self.proxyView!)
+        super.init(frame: frame);
+        var view = self.loadNib();
+        view.frame = self.bounds;
+        view.autoresizingMask = .FlexibleWidth | .FlexibleHeight;
+        
+        self.addSubview(self.proxyView!);
         
         initPlot();
     }
@@ -84,6 +93,10 @@ class SensorOverview: UIView, JBLineChartViewDataSource, JBLineChartViewDelegate
             view.addConstraints(contraints)
             
             view.proxyView = view
+            
+            //            let selector4Tap:Selector = Selector("handleTap:");
+            //            let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: selector4Tap);
+            //            view.proxyView?.addGestureRecognizer(tapGestureRecognizer);
             return view
         }
         return self
@@ -101,9 +114,13 @@ class SensorOverview: UIView, JBLineChartViewDataSource, JBLineChartViewDelegate
         borderLayer.cornerRadius = 10;
         borderLayer.borderWidth = BorderWidth;
         borderLayer.borderColor = UIColor.darkGrayColor().CGColor;
+        borderLayer.shadowOffset = CGSize(width: 0.2, height: -0.5);
+        borderLayer.shadowOpacity = 0.5;
         
         var colorRingLayer = view.colorRing.layer;
         colorRingLayer.cornerRadius = view.colorRing.frame.width/2;
+        colorRingLayer.shadowOffset = CGSize(width: 0.2, height: -0.5);
+        colorRingLayer.shadowOpacity = 0.5
         
         var placeHolderLayer = view.placeHolderView.layer;
         placeHolderLayer.cornerRadius = view.placeHolderView.frame.width/2;
@@ -115,14 +132,20 @@ class SensorOverview: UIView, JBLineChartViewDataSource, JBLineChartViewDelegate
         imageLayer.cornerRadius = view.sensorLogo.frame.width/2;
         imageLayer.borderWidth = BorderWidth;
         imageLayer.borderColor = UIColor.darkGrayColor().CGColor;
+        imageLayer.shadowOffset = CGSize(width: 0.2, height: -0.5);
+        imageLayer.shadowOpacity = 0.5;
         
+        //view.sensorLogo.hidden = true;
         view.userInteractionEnabled = true;
         
         return view
     }
     
-    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
-        
+    @IBAction func handleTap() {
+        if let D = self.delegate {
+            var title :String = self.title;
+            D.DidTouchLogo?(title);
+        }
     }
     
     override func intrinsicContentSize() -> CGSize {
@@ -137,15 +160,29 @@ class SensorOverview: UIView, JBLineChartViewDataSource, JBLineChartViewDelegate
         self.ChartView.delegate = self;
         self.ChartView.dataSource = self;
         self.ChartView.showsVerticalSelection = false;
+        self.ChartView.backgroundColor = UIColor.clearColor();
     }
     
     func drawChart() {
         if self.ChartView.delegate == nil {
             initPlot();
         }
-        self.ChartView.minimumValue = 0;
-        self.test();
-        self.ChartView.reloadData();
+        if values.count != 0 {
+            var range = max(values)! - min(values)!;
+            range = range * 0.1;
+            
+            range = min(values)! - range;
+            
+            range = range > 0 ? range : 0;
+            
+            
+            
+            self.ChartView.minimumValue = range;
+            self.ChartView.reloadData();
+            self.ChartView.hidden = false;
+        } else {
+            self.ChartView.hidden = true;
+        }
     }
     
     //MARK: - JBBarChartView Delegate
@@ -158,12 +195,32 @@ class SensorOverview: UIView, JBLineChartViewDataSource, JBLineChartViewDelegate
         return true;
     }
     
+    func lineChartView(lineChartView: JBLineChartView!, showsDotsForLineAtLineIndex lineIndex: UInt) -> Bool {
+        return true;
+    }
+    
+    func lineChartView(lineChartView: JBLineChartView!, dotRadiusForDotAtHorizontalIndex horizontalIndex: UInt, atLineIndex lineIndex: UInt) -> CGFloat {
+        return 5;
+    }
+    
     func lineChartView(lineChartView: JBLineChartView!, widthForLineAtLineIndex lineIndex: UInt) -> CGFloat {
-        return 1;
+        return 2;
     }
     
     func lineChartView(lineChartView: JBLineChartView!, colorForLineAtLineIndex lineIndex: UInt) -> UIColor! {
-        return UIColor.blueColor();
+        return lineColor;
+    }
+    
+    func lineChartView(lineChartView: JBLineChartView!, selectionColorForLineAtLineIndex lineIndex: UInt) -> UIColor! {
+        return lineColor;
+    }
+    
+    func lineChartView(lineChartView: JBLineChartView!, colorForDotAtHorizontalIndex horizontalIndex: UInt, atLineIndex lineIndex: UInt) -> UIColor! {
+        return lineColor;
+    }
+    
+    func lineChartView(lineChartView: JBLineChartView!, selectionColorForDotAtHorizontalIndex horizontalIndex: UInt, atLineIndex lineIndex: UInt) -> UIColor! {
+        return lineColor;
     }
     
     func lineChartView(lineChartView: JBLineChartView!, lineStyleForLineAtLineIndex lineIndex: UInt) -> JBLineChartViewLineStyle {
@@ -171,7 +228,7 @@ class SensorOverview: UIView, JBLineChartViewDataSource, JBLineChartViewDelegate
     }
     
     func lineChartView(lineChartView: JBLineChartView!, fillColorForLineAtLineIndex lineIndex: UInt) -> UIColor! {
-        return UIColor(red: 119, green: 160, blue: 229, alpha: 0.5);
+        return UIColor.clearColor();
     }
     
     //MARK: - JBBarChartView DataSource
@@ -183,49 +240,20 @@ class SensorOverview: UIView, JBLineChartViewDataSource, JBLineChartViewDelegate
         return values[Int(horizontalIndex)];
     }
     
-    func test () {
-        let rect : CGRect = self.ChartBackground.frame
-        var vista : UIView = UIView(frame: rect);
-        
-        let gradient : CAGradientLayer = CAGradientLayer()
-        gradient.frame = vista.bounds
-        
-        let cor1 = UIColor.redColor().CGColor
-        let cor2 = UIColor.whiteColor().CGColor
-        let arrayColors = [cor2, cor2, cor1]
-        
-        gradient.colors = arrayColors
-        gradient.locations = [0.4, 0.6];
-        
-        self.ChartBackground.layer.insertSublayer(gradient, atIndex: 0)
+    //MARK: - Helper functions
+    func min <T : Comparable> (var array : [T]) -> T? {
+        if array.isEmpty {
+            return nil
+        }
+        return reduce(array, array[0]) {$0 > $1 ? $1 : $0}
     }
     
-    func radialGradientImage(size:CGSize, start:CGFloat, end:CGFloat, center:CGPoint, radius:CGFloat) -> UIImage
-    {
-        UIGraphicsBeginImageContextWithOptions(size, true, 1);
-        let num_location:UInt = 2;
-        
-        let locations:[CGFloat]  = [0.0, 1.0];
-        let components:[CGFloat] = [start, start,start, 1.0, end, end, end, 1.0];
-        
-        var myColorSpace:CGColorSpaceRef = CGColorSpaceCreateDeviceRGB();
-        var myGradient:CGGradientRef = CGGradientCreateWithColorComponents(myColorSpace, components, locations, num_location);
-        
-        var myCentrePoint:CGPoint = CGPointMake(center.x * size.width, center.y * size.height);
-        var myRadius:CGFloat = min(size.width, size.height)*radius;
-        
-        CGContextDrawRadialGradient(UIGraphicsGetCurrentContext(), myGradient, myCentrePoint, 0, myCentrePoint, myRadius, CGGradientDrawingOptions.allZeros);
-        
-        var image:UIImage = UIGraphicsGetImageFromCurrentImageContext();
-        
-        UIGraphicsEndImageContext();
-        return image;
+    func max <T : Comparable> (var array : [T]) -> T? {
+        if array.isEmpty {
+            return nil
+        }
+        return reduce(array, array[0]) {$0 < $1 ? $1 : $0}
     }
     
-    func makeGradient() {
-        var gradient:CAGradientLayer = CAGradientLayer();
-        gradient.frame = self.ChartBackground.frame;
-        gradient.colors = [UIColor.blueColor(), UIColor.clearColor()];
-        self.ChartBackground.layer.insertSublayer(gradient, atIndex: 0);
-    }
+    
 }

@@ -25,21 +25,37 @@
                     <subviews>
                         <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Particules" translatesAutoresizingMaskIntoConstraints="NO" id="MIg-1d-7Ck" userLabel="Logo">
                             <rect key="frame" x="20" y="5" width="80" height="80"/>
+                            <gestureRecognizers/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="80" id="Nvs-Wr-A7h"/>
                                 <constraint firstAttribute="width" constant="80" id="rHu-PC-XRW"/>
                             </constraints>
                         </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ruG-1G-gOr">
+                            <rect key="frame" x="37" y="30" width="46" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="80" id="Qy5-yx-Bj5"/>
+                                <constraint firstAttribute="height" constant="80" id="dk2-g7-ubv"/>
+                            </constraints>
+                            <state key="normal" title="Button">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="handleTap" destination="iN0-l3-epB" eventType="touchUpInside" id="4Nj-ft-jFC"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" red="0.94977337121963501" green="0.94974493980407715" blue="0.9497610330581665" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="centerY" secondItem="MIg-1d-7Ck" secondAttribute="centerY" id="IgG-uz-OHU"/>
+                        <constraint firstItem="ruG-1G-gOr" firstAttribute="centerY" secondItem="MIg-1d-7Ck" secondAttribute="centerY" id="JdY-sv-OaW"/>
+                        <constraint firstItem="ruG-1G-gOr" firstAttribute="centerX" secondItem="MIg-1d-7Ck" secondAttribute="centerX" id="VYa-4s-KL7"/>
                         <constraint firstItem="MIg-1d-7Ck" firstAttribute="leading" secondItem="SfA-fH-WAs" secondAttribute="leading" constant="20" symbolic="YES" id="jAE-WN-cXf"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KgG-cz-nPD" userLabel="ChartBackground">
                     <rect key="frame" x="108" y="35" width="209" height="80"/>
-                    <color key="backgroundColor" red="0.98681747913360596" green="0.17414826154708862" blue="0.22661145031452179" alpha="0.75" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LVG-bJ-rae" userLabel="Chart" customClass="JBLineChartView">
                     <rect key="frame" x="108" y="39" width="209" height="80"/>
@@ -107,6 +123,7 @@
                 <outlet property="ChartBackground" destination="KgG-cz-nPD" id="n2B-se-8va"/>
                 <outlet property="ChartView" destination="LVG-bJ-rae" id="RYT-LS-hcp"/>
                 <outlet property="borderView" destination="SfA-fH-WAs" id="sxm-3S-g78"/>
+                <outlet property="buttonSelect" destination="ruG-1G-gOr" id="017-m7-VxN"/>
                 <outlet property="colorRing" destination="ap5-NQ-WV6" id="4EE-7Q-wrq"/>
                 <outlet property="placeHolderView" destination="62H-oV-rwn" id="yab-p3-XZ1"/>
                 <outlet property="sensorLogo" destination="MIg-1d-7Ck" id="zuW-tT-N6u"/>

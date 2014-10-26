@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B0D92E819FD01C00021F41B /* HTProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B0D92DB19FD01C00021F41B /* HTProgressHUD.m */; };
+		2B0D92E919FD01C00021F41B /* HTProgressHUDAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B0D92DD19FD01C00021F41B /* HTProgressHUDAnimation.m */; };
+		2B0D92EA19FD01C00021F41B /* HTProgressHUDFadeAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B0D92DF19FD01C00021F41B /* HTProgressHUDFadeAnimation.m */; };
+		2B0D92EB19FD01C00021F41B /* HTProgressHUDFadeZoomAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B0D92E119FD01C00021F41B /* HTProgressHUDFadeZoomAnimation.m */; };
+		2B0D92EC19FD01C00021F41B /* HTProgressHUDIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B0D92E319FD01C00021F41B /* HTProgressHUDIndicatorView.m */; };
+		2B0D92ED19FD01C00021F41B /* HTProgressHUDPieIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B0D92E519FD01C00021F41B /* HTProgressHUDPieIndicatorView.m */; };
+		2B0D92EE19FD01C00021F41B /* HTProgressHUDRingIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B0D92E719FD01C00021F41B /* HTProgressHUDRingIndicatorView.m */; };
 		2B89F62119F9981C002BA151 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B89F62019F9981C002BA151 /* ContainerViewController.swift */; };
 		2B89F62319F99CE4002BA151 /* DevicesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B89F62219F99CE4002BA151 /* DevicesTableViewController.swift */; };
 		2B9C353619EFDDC500081E4A /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B9C353519EFDDC500081E4A /* CoreData.framework */; };
@@ -41,6 +48,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2B0D92DA19FD01C00021F41B /* HTProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTProgressHUD.h; sourceTree = "<group>"; };
+		2B0D92DB19FD01C00021F41B /* HTProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTProgressHUD.m; sourceTree = "<group>"; };
+		2B0D92DC19FD01C00021F41B /* HTProgressHUDAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTProgressHUDAnimation.h; sourceTree = "<group>"; };
+		2B0D92DD19FD01C00021F41B /* HTProgressHUDAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTProgressHUDAnimation.m; sourceTree = "<group>"; };
+		2B0D92DE19FD01C00021F41B /* HTProgressHUDFadeAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTProgressHUDFadeAnimation.h; sourceTree = "<group>"; };
+		2B0D92DF19FD01C00021F41B /* HTProgressHUDFadeAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTProgressHUDFadeAnimation.m; sourceTree = "<group>"; };
+		2B0D92E019FD01C00021F41B /* HTProgressHUDFadeZoomAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTProgressHUDFadeZoomAnimation.h; sourceTree = "<group>"; };
+		2B0D92E119FD01C00021F41B /* HTProgressHUDFadeZoomAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTProgressHUDFadeZoomAnimation.m; sourceTree = "<group>"; };
+		2B0D92E219FD01C00021F41B /* HTProgressHUDIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTProgressHUDIndicatorView.h; sourceTree = "<group>"; };
+		2B0D92E319FD01C00021F41B /* HTProgressHUDIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTProgressHUDIndicatorView.m; sourceTree = "<group>"; };
+		2B0D92E419FD01C00021F41B /* HTProgressHUDPieIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTProgressHUDPieIndicatorView.h; sourceTree = "<group>"; };
+		2B0D92E519FD01C00021F41B /* HTProgressHUDPieIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTProgressHUDPieIndicatorView.m; sourceTree = "<group>"; };
+		2B0D92E619FD01C00021F41B /* HTProgressHUDRingIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTProgressHUDRingIndicatorView.h; sourceTree = "<group>"; };
+		2B0D92E719FD01C00021F41B /* HTProgressHUDRingIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTProgressHUDRingIndicatorView.m; sourceTree = "<group>"; };
 		2B89F62019F9981C002BA151 /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		2B89F62219F99CE4002BA151 /* DevicesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevicesTableViewController.swift; sourceTree = "<group>"; };
 		2B9C353519EFDDC500081E4A /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -91,6 +112,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B0D92D919FD01420021F41B /* HTProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				2B0D92DA19FD01C00021F41B /* HTProgressHUD.h */,
+				2B0D92DB19FD01C00021F41B /* HTProgressHUD.m */,
+				2B0D92DC19FD01C00021F41B /* HTProgressHUDAnimation.h */,
+				2B0D92DD19FD01C00021F41B /* HTProgressHUDAnimation.m */,
+				2B0D92DE19FD01C00021F41B /* HTProgressHUDFadeAnimation.h */,
+				2B0D92DF19FD01C00021F41B /* HTProgressHUDFadeAnimation.m */,
+				2B0D92E019FD01C00021F41B /* HTProgressHUDFadeZoomAnimation.h */,
+				2B0D92E119FD01C00021F41B /* HTProgressHUDFadeZoomAnimation.m */,
+				2B0D92E219FD01C00021F41B /* HTProgressHUDIndicatorView.h */,
+				2B0D92E319FD01C00021F41B /* HTProgressHUDIndicatorView.m */,
+				2B0D92E419FD01C00021F41B /* HTProgressHUDPieIndicatorView.h */,
+				2B0D92E519FD01C00021F41B /* HTProgressHUDPieIndicatorView.m */,
+				2B0D92E619FD01C00021F41B /* HTProgressHUDRingIndicatorView.h */,
+				2B0D92E719FD01C00021F41B /* HTProgressHUDRingIndicatorView.m */,
+			);
+			name = HTProgressHUD;
+			sourceTree = "<group>";
+		};
 		2BBE87F619E918F8003DCA6C = {
 			isa = PBXGroup;
 			children = (
@@ -113,6 +155,7 @@
 		2BBE880119E918F8003DCA6C /* Carie_Boulanger */ = {
 			isa = PBXGroup;
 			children = (
+				2B0D92D919FD01420021F41B /* HTProgressHUD */,
 				2BE56EF519EBED8B00450999 /* Models */,
 				2BE56EEC19EBED3200450999 /* Helpers */,
 				2BBE883A19E981C4003DCA6C /* Carie_Boulanger-Bridging-Header.h */,
@@ -304,16 +347,23 @@
 				2BBE882919E91CF4003DCA6C /* SensorOverview.swift in Sources */,
 				2BE56EF919EBED9D00450999 /* ValueWithRange.swift in Sources */,
 				2B89F62319F99CE4002BA151 /* DevicesTableViewController.swift in Sources */,
+				2B0D92ED19FD01C00021F41B /* HTProgressHUDPieIndicatorView.m in Sources */,
 				2B89F62119F9981C002BA151 /* ContainerViewController.swift in Sources */,
 				2BE56EEF19EBED5900450999 /* JSON.swift in Sources */,
 				2BBE883819E97A0F003DCA6C /* JBLineChartView.m in Sources */,
 				2BE56EF419EBED7700450999 /* SwiftyJSON.swift in Sources */,
 				2BBE883619E97A0F003DCA6C /* JBBarChartView.m in Sources */,
 				2BBE880719E918F8003DCA6C /* ViewController.swift in Sources */,
+				2B0D92EC19FD01C00021F41B /* HTProgressHUDIndicatorView.m in Sources */,
 				2BE56EF819EBED9D00450999 /* Messages.swift in Sources */,
+				2B0D92EE19FD01C00021F41B /* HTProgressHUDRingIndicatorView.m in Sources */,
 				2BE56EFB19ED4E4900450999 /* DateTimeFormat_Singleton.swift in Sources */,
+				2B0D92EA19FD01C00021F41B /* HTProgressHUDFadeAnimation.m in Sources */,
 				2BBE883719E97A0F003DCA6C /* JBChartView.m in Sources */,
+				2B0D92E819FD01C00021F41B /* HTProgressHUD.m in Sources */,
 				2BBE880519E918F8003DCA6C /* AppDelegate.swift in Sources */,
+				2B0D92E919FD01C00021F41B /* HTProgressHUDAnimation.m in Sources */,
+				2B0D92EB19FD01C00021F41B /* HTProgressHUDFadeZoomAnimation.m in Sources */,
 				2BE56EF219EBED6400450999 /* Operator.swift in Sources */,
 				2BE56EF019EBED5900450999 /* JsonService.swift in Sources */,
 			);

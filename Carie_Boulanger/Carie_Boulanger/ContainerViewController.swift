@@ -29,7 +29,6 @@ class ContainerViewController: UIViewController, MainViewControllerDelegate, UIG
         }
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -46,9 +45,10 @@ class ContainerViewController: UIViewController, MainViewControllerDelegate, UIG
         mainNavigationController.didMoveToParentViewController(self)
         
         let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: "handlePanGesture:")
+        panGestureRecognizer.minimumNumberOfTouches = 2;
+        //let panGestureRecognizer = UIScreenEdgePanGestureRecognizer(target: self, action: "handlePanGesture:");
+        //panGestureRecognizer.edges = UIRectEdge.Left;
         mainNavigationController.view.addGestureRecognizer(panGestureRecognizer)
-        
-        let url = NSURL(string: "http://prevention.azurewebsites.net/api/messages/86D3/");
     }
     
     override func didReceiveMemoryWarning() {
@@ -80,7 +80,7 @@ class ContainerViewController: UIViewController, MainViewControllerDelegate, UIG
     
     func addLeftPanelViewController() {
         if (leftViewController == nil) {
-
+            
             leftViewController = UIStoryboard.leftViewController()
             //leftViewController!.animals = Animal.allCats()
             
@@ -136,6 +136,9 @@ class ContainerViewController: UIViewController, MainViewControllerDelegate, UIG
     }
     
     //MARK: - UIGestureRecognizerDelegate
+    
+    
+    
     func handlePanGesture(recognizer: UIPanGestureRecognizer) {
         let gestureIsDraggingFromLeftToRight = (recognizer.velocityInView(view).x > 0)
         
@@ -149,8 +152,11 @@ class ContainerViewController: UIViewController, MainViewControllerDelegate, UIG
                 showShadowForMainViewController(true)
             }
         case .Changed:
-            recognizer.view!.center.x = recognizer.view!.center.x + recognizer.translationInView(view).x
-            recognizer.setTranslation(CGPointZero, inView: view)
+            //Animate only when dragging from left to right
+            if gestureIsDraggingFromLeftToRight {
+                recognizer.view!.center.x = recognizer.view!.center.x + recognizer.translationInView(view).x
+                recognizer.setTranslation(CGPointZero, inView: view)
+            }
         case .Ended:
             if (leftViewController != nil) {
                 // animate the side panel open or closed based on whether the view has moved more or less than halfway

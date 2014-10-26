@@ -6,62 +6,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Carie_Boulanger/User Interface/SensorOverview.swift"
-            timestampString = "436039976.966253"
+            filePath = "Carie_Boulanger/Messages.swift"
+            timestampString = "436055127.698482"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "145"
-            endingLineNumber = "145"
-            landmarkName = "handleTap()"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "init(json:)"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Carie_Boulanger.SensorOverview.handleTap (Carie_Boulanger.SensorOverview)() -&gt; ()"
-                  moduleName = "Carie_Boulanger"
-                  urlString = "file:///Users/gdelpu/Documents/Development/Sopra/Work_Innovation_Boulanger/Carie_Boulanger/Carie_Boulanger/User%20Interface/SensorOverview.swift"
-                  timestampString = "436048834.477046"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "145"
-                  endingLineNumber = "145"
-                  offsetFromSymbolStart = "40">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Carie_Boulanger.SensorOverview.handleTap (Carie_Boulanger.SensorOverview)() -&gt; ()"
-                  moduleName = "Carie_Boulanger"
-                  urlString = "file:///Users/gdelpu/Documents/Development/Sopra/Work_Innovation_Boulanger/Carie_Boulanger/Carie_Boulanger/User%20Interface/SensorOverview.swift"
-                  timestampString = "436048834.477283"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "145"
-                  endingLineNumber = "145"
-                  offsetFromSymbolStart = "1264">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Carie_Boulanger/User Interface/SensorOverview.swift"
-            timestampString = "436039364.376297"
+            filePath = "Carie_Boulanger/ViewController.swift"
+            timestampString = "436055576.916284"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
-            landmarkName = "init(frame:)"
+            startingLineNumber = "222"
+            endingLineNumber = "222"
+            landmarkName = "ParseJsonMessages(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

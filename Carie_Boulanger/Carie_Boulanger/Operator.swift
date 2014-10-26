@@ -12,6 +12,7 @@ import Foundation
 Marshal operator
 Source: ijoshsmith.com/2014/07/05/custom-threading-operator-in-swift/
 */
+//MARK: - Marshal operator
 infix operator ~> {}
 
 // Serial dispatch queue used by the ~> operator.
@@ -46,4 +47,31 @@ func ~> <R> (
             mainClosure(result: result)
         }
     }
+}
+
+//MARK: - DateComponent operator
+func +(left: NSDateComponents,
+    right: NSDateComponents) -> NSDateComponents
+{
+    let comps = NSDateComponents()
+    comps.second = left.second + right.second
+    comps.minute = left.minute + right.minute
+    comps.hour = left.hour + right.hour
+    comps.day = left.day + right.day
+    comps.month = left.month + right.month
+    comps.year = left.year + right.year
+    return comps;
+}
+
+func -(left: NSDateComponents,
+    right: NSDateComponents) -> NSDateComponents
+{
+    let comps = NSDateComponents()
+    comps.second = left.second - right.second
+    comps.minute = left.minute - right.minute
+    comps.hour = left.hour - right.hour
+    comps.day = left.day - right.day
+    comps.month = left.month - right.month
+    comps.year = left.year - right.year
+    return comps;
 }

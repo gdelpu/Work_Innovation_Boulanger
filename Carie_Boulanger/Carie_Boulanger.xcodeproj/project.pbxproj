@@ -14,6 +14,7 @@
 		2B0D92EC19FD01C00021F41B /* HTProgressHUDIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B0D92E319FD01C00021F41B /* HTProgressHUDIndicatorView.m */; };
 		2B0D92ED19FD01C00021F41B /* HTProgressHUDPieIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B0D92E519FD01C00021F41B /* HTProgressHUDPieIndicatorView.m */; };
 		2B0D92EE19FD01C00021F41B /* HTProgressHUDRingIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B0D92E719FD01C00021F41B /* HTProgressHUDRingIndicatorView.m */; };
+		2B0D92F019FDA7920021F41B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0D92EF19FDA7920021F41B /* Extensions.swift */; };
 		2B89F62119F9981C002BA151 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B89F62019F9981C002BA151 /* ContainerViewController.swift */; };
 		2B89F62319F99CE4002BA151 /* DevicesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B89F62219F99CE4002BA151 /* DevicesTableViewController.swift */; };
 		2B9C353619EFDDC500081E4A /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B9C353519EFDDC500081E4A /* CoreData.framework */; };
@@ -62,6 +63,7 @@
 		2B0D92E519FD01C00021F41B /* HTProgressHUDPieIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTProgressHUDPieIndicatorView.m; sourceTree = "<group>"; };
 		2B0D92E619FD01C00021F41B /* HTProgressHUDRingIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTProgressHUDRingIndicatorView.h; sourceTree = "<group>"; };
 		2B0D92E719FD01C00021F41B /* HTProgressHUDRingIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTProgressHUDRingIndicatorView.m; sourceTree = "<group>"; };
+		2B0D92EF19FDA7920021F41B /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		2B89F62019F9981C002BA151 /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		2B89F62219F99CE4002BA151 /* DevicesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevicesTableViewController.swift; sourceTree = "<group>"; };
 		2B9C353519EFDDC500081E4A /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -229,6 +231,7 @@
 				2BE56EED19EBED5900450999 /* JSON.swift */,
 				2BE56EEE19EBED5900450999 /* JsonService.swift */,
 				2BE56EFA19ED4E4900450999 /* DateTimeFormat_Singleton.swift */,
+				2B0D92EF19FDA7920021F41B /* Extensions.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -344,6 +347,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B0D92F019FDA7920021F41B /* Extensions.swift in Sources */,
 				2BBE882919E91CF4003DCA6C /* SensorOverview.swift in Sources */,
 				2BE56EF919EBED9D00450999 /* ValueWithRange.swift in Sources */,
 				2B89F62319F99CE4002BA151 /* DevicesTableViewController.swift in Sources */,

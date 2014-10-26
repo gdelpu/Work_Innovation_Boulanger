@@ -14,12 +14,11 @@ protocol MainViewControllerDelegate {
     optional func collapseSidePanels()
 }
 
-class MainViewController: UIViewController, JBLineChartViewDelegate, JBLineChartViewDataSource, DevicesTableViewControllerDelegate, SensorOverviewDelegate {
+class MainViewController: UIViewController, JBLineChartViewDelegate, JBLineChartViewDataSource, DevicesTableViewControllerDelegate {
     
     var delegate: MainViewControllerDelegate?
     
     var values:Array<Message> = [];
-    var ValuesForChart:Array<CGFloat> = [];
     var selectedSensor:String = "";
     
     var deviceName:String = "" {
@@ -40,6 +39,7 @@ class MainViewController: UIViewController, JBLineChartViewDelegate, JBLineChart
     
     @IBOutlet var UnitLabel: UILabel!;
     @IBOutlet var ValueLabel: UILabel!;
+    @IBOutlet var dateLabel: UILabel!;
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,10 +51,6 @@ class MainViewController: UIViewController, JBLineChartViewDelegate, JBLineChart
         
         self.TempSensorView.title = "Temperature";
         self.HumiditySensorView.title = "Humidity";
-        
-        self.TempSensorView.delegate = self;
-        self.LightSensorView.delegate = self;
-        self.HumiditySensorView.delegate = self;
         
         self.ChartView.dataSource = self;
         self.ChartView.delegate = self;
@@ -97,6 +93,7 @@ class MainViewController: UIViewController, JBLineChartViewDelegate, JBLineChart
             selectedSensor = "Temperature";
             UnitLabel.text = "°C";
             ValueLabel.text = "";
+            dateLabel.text = ""
             self.ChartView.reloadData();
         }
     }
@@ -107,6 +104,7 @@ class MainViewController: UIViewController, JBLineChartViewDelegate, JBLineChart
             selectedSensor = "Humidity";
             UnitLabel.text = "%";
             ValueLabel.text = "";
+                        dateLabel.text = ""
             self.ChartView.reloadData();
         }
     }
@@ -117,6 +115,7 @@ class MainViewController: UIViewController, JBLineChartViewDelegate, JBLineChart
             selectedSensor = "Light";
             UnitLabel.text = "Lux";
             ValueLabel.text = "";
+                        dateLabel.text = ""
             self.ChartView.reloadData();
             
         }
@@ -128,6 +127,7 @@ class MainViewController: UIViewController, JBLineChartViewDelegate, JBLineChart
             selectedSensor = "Particule";
             UnitLabel.text = "??";
             ValueLabel.text = "";
+                        dateLabel.text = ""
             self.ChartView.reloadData();
             
         }
@@ -141,57 +141,76 @@ class MainViewController: UIViewController, JBLineChartViewDelegate, JBLineChart
     @IBAction func refreshData() {
         progressHUD.showInView(self.view);
         // Get current date.
-        let date = NSDate();
-        let formatter = NSDateFormatter();
-        formatter.dateFormat = "YYYY-MM-dd";
-        formatter.stringFromDate(date);
+        let dateRange:Int = -5;
+        let date:NSDate = (dateRange.days).fromNow;
+        
+        
+        //        let formatter = NSDateFormatter();
+        //        formatter.dateFormat = "YYYY-MM-dd";
+        //        formatter.stringFromDate(date);
         
         //Format URL
-        let url = NSURL(string: "http://prevention.azurewebsites.net/api/messages/" + deviceName + "/" + formatter.stringFromDate(date));
-        
-        //let url = NSURL(string: "http://prevention.azurewebsites.net/api/messages/" + deviceName + "/2014-10-20");
-        
-        //Request data
-        JSONService
-            .GET(url!)
-            .success{json in {self.ParseJsonMessages(json)} ~> {self.UpdateValues($0)}}
-            .failure(self.onFailure, queue: NSOperationQueue.mainQueue())
+        if let currentDate = DateTimeFormater.sharedInstance.dateStringFromDate(date)
+        {
+            if let url = NSURL(string: "http://prevention.azurewebsites.net/api/messages/" + deviceName + "/" + currentDate)
+            {
+                //let url = NSURL(string: "http://prevention.azurewebsites.net/api/messages/" + deviceName + "/2014-10-20");
+                
+                //Request data
+                JSONService
+                    .GET(url)
+                    .success{json in {self.ParseJsonMessages(json)} ~> {self.UpdateValues($0)}}
+                    .failure(self.onFailure, queue: NSOperationQueue.mainQueue())
+            }
+        }
     }
     
     // MARK: - Http request
     func UpdateValues (messages:[Message]) {
-        self.ChartView.reloadData();
-        
-        for item:Message in messages {
-            values.append(item);
-        }
-        // Extract only the last 15 values for sparklines in Sensor views
-        
-        //Compute array bounds to slice
-        let upperBound:Int = self.values.count - 1;
-        
-        if upperBound > 0 {
-            var lowerBound1:Int = upperBound - 50;
-            var lowerBound:Int = upperBound - 10;
-            
-            // Ensure lower bound will not be negative
-            lowerBound = lowerBound > -1 ? lowerBound:0;
-            lowerBound1 = lowerBound1 > -1 ? lowerBound1:0;
-            
-            self.ValuesForChart = Array(self.values[lowerBound1 ... upperBound]).map { (item:Message) -> CGFloat in return CGFloat(item.Temperature.value) };
-            
-            // Assign values to sparklines
-            self.TempSensorView.values = Array(self.values[lowerBound...upperBound]).map { (item:Message) -> CGFloat in return CGFloat(item.Temperature.value) };
-            
-            self.HumiditySensorView.values = Array(self.values[lowerBound...upperBound]).map { (item:Message) -> CGFloat in return CGFloat(item.Humidite.value) };
-            
-            self.ParticulesSensorView.values = Array(self.values[lowerBound...upperBound]).map { (item:Message) -> CGFloat in return CGFloat(item.Particules.value) };
-            
-            self.LightSensorView.values = Array(self.values[lowerBound...upperBound]).map { (item:Message) -> CGFloat in return CGFloat(item.Lumiere.value) };
-            
-            
-        }
         progressHUD.hideWithAnimation(true);
+        if messages.count == 0 {
+            var alertView = UIAlertView(title: "No messages", message: "No message returned by the web service, consider selecting another device", delegate: nil, cancelButtonTitle: "Ok");
+            
+            alertView.show();
+            
+            if let D = delegate {
+                D.toggleLeftPanel!();
+            }
+            
+        } else {
+            
+            self.ChartView.minimumValue = 0;
+            
+            self.ChartView.reloadData();
+            
+            for item:Message in messages {
+                values.append(item);
+            }
+            // Extract only the last 15 values for sparklines in Sensor views
+            
+            //Compute array bounds to slice
+            let upperBound:Int = self.values.count - 1;
+            
+            if upperBound > 0 {
+                var lowerBound1:Int = upperBound - 50;
+                var lowerBound:Int = upperBound - 10;
+                
+                // Ensure lower bound will not be negative
+                lowerBound = lowerBound > -1 ? lowerBound:0;
+                lowerBound1 = lowerBound1 > -1 ? lowerBound1:0;
+                
+                // Assign values to sparklines
+                self.TempSensorView.values = Array(self.values[lowerBound...upperBound]).map { (item:Message) -> CGFloat in return CGFloat(item.Temperature.value) };
+                
+                self.HumiditySensorView.values = Array(self.values[lowerBound...upperBound]).map { (item:Message) -> CGFloat in return CGFloat(item.Humidite.value) };
+                
+                self.ParticulesSensorView.values = Array(self.values[lowerBound...upperBound]).map { (item:Message) -> CGFloat in return CGFloat(item.Particules.value) };
+                
+                self.LightSensorView.values = Array(self.values[lowerBound...upperBound]).map { (item:Message) -> CGFloat in return CGFloat(item.Lumiere.value) };
+                
+                
+            }
+        }
     }
     
     func ParseJsonMessages (json: [JSON]) -> [Message] {
@@ -216,9 +235,20 @@ class MainViewController: UIViewController, JBLineChartViewDelegate, JBLineChart
     
     //MARK: JBLineChartView delegate
     func lineChartView(lineChartView: JBLineChartView!, numberOfVerticalValuesAtLineIndex lineIndex: UInt) -> UInt {
-        return UInt(self.ValuesForChart.count);
+        return UInt(self.values.count);
     }
     
+    func lineChartView(lineChartView: JBLineChartView!, fillColorForLineAtLineIndex lineIndex: UInt) -> UIColor! {
+        return UIColor.blueColor();
+    }
+    
+    func lineChartView(lineChartView: JBLineChartView!, selectionColorForLineAtLineIndex lineIndex: UInt) -> UIColor! {
+        return UIColor.redColor();
+    }
+    
+    func lineChartView(lineChartView: JBLineChartView!, verticalSelectionColorForLineAtLineIndex lineIndex: UInt) -> UIColor! {
+        return UIColor.redColor();
+    }
     func lineChartView(lineChartView: JBLineChartView!, verticalValueForHorizontalIndex horizontalIndex: UInt, atLineIndex lineIndex: UInt) -> CGFloat {
         
         var Message = self.values[Int(horizontalIndex)];
@@ -265,24 +295,24 @@ class MainViewController: UIViewController, JBLineChartViewDelegate, JBLineChart
     
     func lineChartView(lineChartView: JBLineChartView!, didSelectLineAtIndex lineIndex: UInt, horizontalIndex: UInt, touchPoint: CGPoint) {
         
-        var Message = self.values[Int(horizontalIndex)];
+        var message = self.values[Int(horizontalIndex)];
         var value:CGFloat = 0;
         
         switch selectedSensor {
         case "Tempareture":
-            value = CGFloat(Message.Temperature.value);
+            value = CGFloat(message.Temperature.value);
             NSLog("Temperature at %u is " + value.description, horizontalIndex);
             break;
         case "Humidity":
-            value = CGFloat(Message.Humidite.value);
+            value = CGFloat(message.Humidite.value);
             NSLog("Humidity at %u is " + value.description, horizontalIndex);
             break;
         case "Light":
-            value = CGFloat(Message.Lumiere.value);
+            value = CGFloat(message.Lumiere.value);
             NSLog("Light at %u is " + value.description, horizontalIndex);
             break;
         case "Particule":
-            value = CGFloat(Message.Particules.value);
+            value = CGFloat(message.Particules.value);
             NSLog("Particule at %u is " + value.description, horizontalIndex);
             break;
         default:
@@ -290,20 +320,20 @@ class MainViewController: UIViewController, JBLineChartViewDelegate, JBLineChart
         }
         
         ValueLabel.text = value.description;
+        if var myDateString = DateTimeFormater.sharedInstance.dateTimeStringFromDate(message.Date){
+            dateLabel.text  = myDateString;
+        } else
+        {
+            dateLabel.text = "??";
+        }
     }
     
     //MARK: - DevicesTableViewControllerDelegate
     func didSelectDevice(deviceName: String) {
         self.deviceName = deviceName;
     }
-    
-    func DidTouchLogo(SensorTitle: String) {
-        selectedSensor = SensorTitle;
-        
-        
-        self.ChartView.reloadData()
-        
-        
-    }
+
 }
+
+ 
 

@@ -67,7 +67,6 @@ class DevicesTableViewController: UITableViewController {
         
         if let D = self.delegate {
             var device :String = listOfDevices[indexPath.row];
-            
             D.didSelectDevice!(device);
         }
     }

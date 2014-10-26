@@ -18,22 +18,16 @@ public class Message {
     public var Humidite:ValueWithRange;
     public var Particules:ValueWithRange;
     public var Lumiere:ValueWithRange;
+    public var Date:NSDate!;
     
     public init(json: JSON){
         var value:Int, valueMax:Int, valueMin:Int;
         
         
-        let datestr = json["Date"].stringValue;
-        
-//        let dateF = DateFormatter.sharedInstance;
-        
-        //dateF.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS";
-//        let date = dateF.convert(datestr!);
-//        let date2 = dateF.dateFromString(datestr!);
-        
-//        self.Id     = json["Id"].integerValue!;
-//        self.Module = json["Module"].stringValue!;
-//        self.Signal = json["Signal"].integerValue!;
+        if let datestr = json["Date"].stringValue {
+            var myDate = DateTimeFormater.sharedInstance.dateFromString(datestr);
+            self.Date = myDate;
+        }
         
         value     = json["Temperature"].integerValue!;
         valueMax  = json["TemperatureMax"].integerValue!;

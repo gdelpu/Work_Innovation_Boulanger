@@ -25,12 +25,23 @@ class DateTimeFormater {
     
     init() {
         
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS";
+        
         
     }
     
     func dateFromString(dateString: String) -> NSDate? {
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS";
         return dateFormatter.dateFromString(dateString);
+    }
+    
+    func dateStringFromDate(date:NSDate) -> String? {
+        dateFormatter.dateFormat = "YYYY-MM-dd";
+        return dateFormatter.stringFromDate(date);
+    }
+    
+    func dateTimeStringFromDate(date:NSDate) -> String? {
+        dateFormatter.dateFormat = "dd/MM/yyyy HH:mm";
+        return dateFormatter.stringFromDate(date);
     }
 
 }

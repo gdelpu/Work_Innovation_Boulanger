@@ -55,6 +55,8 @@ class MainViewController: UIViewController, JBLineChartViewDelegate, JBLineChart
         self.ChartView.dataSource = self;
         self.ChartView.delegate = self;
         
+        self.clearChart();
+        
         if deviceName == "" {
             if let D = delegate {
                 D.toggleLeftPanel!();
@@ -87,14 +89,26 @@ class MainViewController: UIViewController, JBLineChartViewDelegate, JBLineChart
         ValueLabel.hidden = true;
     }
     
+    func prepareChartAndReload(unit:String) {
+        UnitLabel.text = unit;
+        ValueLabel.text = "";
+        dateLabel.text = ""
+        self.ChartView.reloadData();
+        self.ChartView.userInteractionEnabled = true;
+    }
+    
+    func clearChart() {
+        UnitLabel.text = "";
+        ValueLabel.text = "";
+        dateLabel.text = ""
+        self.ChartView.userInteractionEnabled = false;
+    }
+    
     func handleTapTemperature(recognizer: UITapGestureRecognizer) {
         if recognizer.state == UIGestureRecognizerState.Ended {
             NSLog("Tap Temp");
             selectedSensor = "Temperature";
-            UnitLabel.text = "°C";
-            ValueLabel.text = "";
-            dateLabel.text = ""
-            self.ChartView.reloadData();
+            self.prepareChartAndReload("°C");
         }
     }
     
@@ -102,10 +116,7 @@ class MainViewController: UIViewController, JBLineChartViewDelegate, JBLineChart
         if recognizer.state == UIGestureRecognizerState.Ended {
             NSLog("Tap Humidity");
             selectedSensor = "Humidity";
-            UnitLabel.text = "%";
-            ValueLabel.text = "";
-                        dateLabel.text = ""
-            self.ChartView.reloadData();
+            self.prepareChartAndReload("%");
         }
     }
     
@@ -113,11 +124,7 @@ class MainViewController: UIViewController, JBLineChartViewDelegate, JBLineChart
         if recognizer.state == UIGestureRecognizerState.Ended {
             NSLog("Tap Light");
             selectedSensor = "Light";
-            UnitLabel.text = "Lux";
-            ValueLabel.text = "";
-                        dateLabel.text = ""
-            self.ChartView.reloadData();
-            
+            self.prepareChartAndReload("Lux");
         }
     }
     
@@ -125,11 +132,7 @@ class MainViewController: UIViewController, JBLineChartViewDelegate, JBLineChart
         if recognizer.state == UIGestureRecognizerState.Ended {
             NSLog("Tap Particule");
             selectedSensor = "Particule";
-            UnitLabel.text = "??";
-            ValueLabel.text = "";
-                        dateLabel.text = ""
-            self.ChartView.reloadData();
-            
+            self.prepareChartAndReload("??")
         }
     }
     
@@ -139,15 +142,14 @@ class MainViewController: UIViewController, JBLineChartViewDelegate, JBLineChart
     }
     
     @IBAction func refreshData() {
+
+        self.clearChart();
+        
         progressHUD.showInView(self.view);
+        
         // Get current date.
         let dateRange:Int = -5;
         let date:NSDate = (dateRange.days).fromNow;
-        
-        
-        //        let formatter = NSDateFormatter();
-        //        formatter.dateFormat = "YYYY-MM-dd";
-        //        formatter.stringFromDate(date);
         
         //Format URL
         if let currentDate = DateTimeFormater.sharedInstance.dateStringFromDate(date)
@@ -192,12 +194,10 @@ class MainViewController: UIViewController, JBLineChartViewDelegate, JBLineChart
             let upperBound:Int = self.values.count - 1;
             
             if upperBound > 0 {
-                var lowerBound1:Int = upperBound - 50;
-                var lowerBound:Int = upperBound - 10;
+                var lowerBound:Int = upperBound - 15;
                 
                 // Ensure lower bound will not be negative
                 lowerBound = lowerBound > -1 ? lowerBound:0;
-                lowerBound1 = lowerBound1 > -1 ? lowerBound1:0;
                 
                 // Assign values to sparklines
                 self.TempSensorView.values = Array(self.values[lowerBound...upperBound]).map { (item:Message) -> CGFloat in return CGFloat(item.Temperature.value) };
@@ -255,7 +255,7 @@ class MainViewController: UIViewController, JBLineChartViewDelegate, JBLineChart
         var value:CGFloat = 0;
         
         switch selectedSensor {
-        case "Tempareture":
+        case "Temperature":
             value = CGFloat(Message.Temperature.value);
             NSLog("Temperature at %u is " + value.description, horizontalIndex);
             break;
@@ -320,12 +320,7 @@ class MainViewController: UIViewController, JBLineChartViewDelegate, JBLineChart
         }
         
         ValueLabel.text = value.description;
-        if var myDateString = DateTimeFormater.sharedInstance.dateTimeStringFromDate(message.Date){
-            dateLabel.text  = myDateString;
-        } else
-        {
-            dateLabel.text = "??";
-        }
+        dateLabel.text = message.DateStr;
     }
     
     //MARK: - DevicesTableViewControllerDelegate

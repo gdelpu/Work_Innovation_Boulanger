@@ -9,13 +9,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Carie_Boulanger/Messages.swift"
-            timestampString = "436055127.698482"
+            filePath = "Carie_Boulanger/ViewController.swift"
+            timestampString = "436107948.213832"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
-            landmarkName = "init(json:)"
+            startingLineNumber = "223"
+            endingLineNumber = "223"
+            landmarkName = "ParseJsonMessages(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -26,12 +26,44 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Carie_Boulanger/ViewController.swift"
-            timestampString = "436055576.916284"
+            timestampString = "436107948.213832"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "222"
-            endingLineNumber = "222"
-            landmarkName = "ParseJsonMessages(_:)"
+            startingLineNumber = "298"
+            endingLineNumber = "298"
+            landmarkName = "lineChartView(_:didSelectLineAtIndex:horizontalIndex:touchPoint:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Carie_Boulanger/ViewController.swift"
+            timestampString = "436107948.213832"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "254"
+            endingLineNumber = "254"
+            landmarkName = "lineChartView(_:verticalValueForHorizontalIndex:atLineIndex:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Carie_Boulanger/ViewController.swift"
+            timestampString = "436107934.680178"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "157"
+            endingLineNumber = "157"
+            landmarkName = "refreshData()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

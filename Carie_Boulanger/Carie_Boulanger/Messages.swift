@@ -19,14 +19,18 @@ public class Message {
     public var Particules:ValueWithRange;
     public var Lumiere:ValueWithRange;
     public var Date:NSDate!;
+    public var DateStr:String!;
     
     public init(json: JSON){
         var value:Int, valueMax:Int, valueMin:Int;
         
         
         if let datestr = json["Date"].stringValue {
-            var myDate = DateTimeFormater.sharedInstance.dateFromString(datestr);
-            self.Date = myDate;
+            if var myDate = DateTimeFormater.sharedInstance.dateFromString(datestr)
+            {
+                self.Date = myDate;
+                self.DateStr = DateTimeFormater.sharedInstance.dateTimeStringFromDate(self.Date);
+            }
         }
         
         value     = json["Temperature"].integerValue!;

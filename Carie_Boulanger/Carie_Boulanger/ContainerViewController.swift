@@ -46,8 +46,8 @@ class ContainerViewController: UIViewController, MainViewControllerDelegate, UIG
         
         let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: "handlePanGesture:")
         panGestureRecognizer.minimumNumberOfTouches = 2;
-        //let panGestureRecognizer = UIScreenEdgePanGestureRecognizer(target: self, action: "handlePanGesture:");
-        //panGestureRecognizer.edges = UIRectEdge.Left;
+//        let panGestureRecognizer = UIScreenEdgePanGestureRecognizer(target: self, action: "handlePanGesture:");
+//        panGestureRecognizer.edges = UIRectEdge.Left;
         mainNavigationController.view.addGestureRecognizer(panGestureRecognizer)
     }
     
@@ -99,8 +99,10 @@ class ContainerViewController: UIViewController, MainViewControllerDelegate, UIG
             animateCenterPanelXPosition(targetPosition: 0) { finished in
                 self.currentState = .BothCollapsed
                 
-                self.leftViewController!.view.removeFromSuperview()
-                self.leftViewController = nil;
+                if self.leftViewController != nil {
+                    self.leftViewController!.view.removeFromSuperview()
+                    self.leftViewController = nil;
+                }
             }
         }
     }
@@ -113,7 +115,7 @@ class ContainerViewController: UIViewController, MainViewControllerDelegate, UIG
     }
     
     func animateCenterPanelXPosition(#targetPosition: CGFloat, completion: ((Bool) -> Void)! = nil) {
-        UIView.animateWithDuration(0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: {
+        UIView.animateWithDuration(0.125, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: {
             self.mainNavigationController.view.frame.origin.x = targetPosition
             }, completion: completion)
     }
